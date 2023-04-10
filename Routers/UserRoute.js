@@ -1,25 +1,32 @@
 const express = require('express');
+const app = express()
 const router = express.Router();
 const data = require('../Src/databaseMysql')
 const con = data.cos
 require('../Models/index')
 
-router.get("/api/user", (req, res) => {
-    
-    res.send("send ")
-})
+const RolesSequelize = require('../Controller/RolesSequelize')
+const DesiSequelize = require('../Controller/DesiSequelize')
+const CompanySequelize = require('../Controller/CompanySequelize')
 
-router.get('/sql/user', (req, res) => {
-    console.log("ser");
-    con.connect(function (err) {
-        if (err) throw err;
-        con.query("SELECT * FROM USER", function (err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-            res.json(result)
-        });
-    });
-    // INSERT INTO `mydemo`.`user` (`id`, `firstName`, `lastName`, `email`, `password`) VALUES ('1', 'manish', 'chudasma ', 'demo@123', 'demo@123');
-})
+//  sequlize controller data  
+// Roles  url
+router.get('/sequlize/Roles', RolesSequelize.getRoles)
+router.post('/sequlize/Roles', RolesSequelize.pustRoles)
+router.put('/sequlize/Roles/:id', RolesSequelize.putRoles)
+router.delete('/sequlize/Roles/:id', RolesSequelize.deleteRoles)
+
+// Designation
+router.get('/sequlize/Designation', DesiSequelize.getDesi)
+router.post('/sequlize/Designation', DesiSequelize.pustDesi)
+router.put('/sequlize/Designation/:id', DesiSequelize.putDesi)
+router.delete('/sequlize/Designation/:id', DesiSequelize.deleteDesi)
+
+// Company 
+router.get('/sequlize/Company', CompanySequelize.getCompany)
+router.post('/sequlize/Company', CompanySequelize.pustCompany)
+router.put('/sequlize/Company/:id', CompanySequelize.putCompany)
+router.delete('/sequlize/Company/:id', CompanySequelize.deleteCompany)
+
 
 module.exports = router
