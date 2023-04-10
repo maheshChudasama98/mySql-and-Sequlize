@@ -16,6 +16,25 @@ sequelize.authenticate().then(() => {
    db.Roles = require('./Roles')(sequelize, DataTypes)
    db.Designation = require('./Designation')(sequelize, DataTypes)
    db.Company = require('./Company')(sequelize, DataTypes)
+   db.Users = require('./User')(sequelize, DataTypes)
+
+   // db.User.hasMany(db.Roles,{ foreignKey: 'User_desi_name_fk' } );
+   // db.Roles.belongsToMany(db.User, { foreignKey: { name: 'User_role_name_Fk'}})
+
+   db.Roles.hasMany(db.Users, { foreignKey: 'User_role_name_fk'  });
+   db.Users.belongsTo(db.Roles, { foreignKey: 'User_role_name_Fk' });
+   
+   
+   db.Designation.hasMany(db.Users, { foreignKey: 'User_desi_name_fk' });
+   db.Users.belongsTo(db.Designation, { foreignKey: 'User_desi_name_fk' });
+   
+   
+   db.Company.hasMany(db.Users, { foreignKey: 'User_com_name_fk' });
+   db.Users.belongsTo(db.Company ,{ foreignKey: 'User_com_name_fk' });
+
+
+   // db.Roles.hasMany(db.Users);
+   // db.Users.belongsTo(db.Company);
 
 
    sequelize.sync({ force: false });
