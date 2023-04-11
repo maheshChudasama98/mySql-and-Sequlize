@@ -10,8 +10,12 @@ app.use(bodyparser.json());
 app.use(express.json())
 
 
-const userRoute = require('./Routers/UserRoute')
+const databaseMysql = require('./Src/databaseMysql')
+databaseMysql.connect();
+const mySqlRoute = require('./Routers/mySqlRoute')
+app.use(mySqlRoute)
 
+const userRoute = require('./Routers/UserRoute')
 app.use(userRoute)
 app.use(express.urlencoded({ extended: true }));
 app.listen(port, (err) => err == null ? console.log(`Server run on port http://localhost:${port}/ `) : console.log("Server error", err))

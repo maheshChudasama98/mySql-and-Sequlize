@@ -1,12 +1,14 @@
 const mysql = require('mysql2');
 
 const createTable = `CREATE TABLE USER (
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     firstName VARCHAR(45) NULL,
     lastName VARCHAR(45) NULL,
     email VARCHAR(100) NULL,
     password VARCHAR(15) NULL,
-    PRIMARY KEY(id))`
+    PRIMARY KEY(id))`;
+
+const alterTable = 'ALTER TABLE User AUTO_INCREMENT=100';
 var cos = mysql.createConnection({
     host: "localhost",
     user: "root",
@@ -16,8 +18,7 @@ var cos = mysql.createConnection({
 
 
 const connect = () => {
-
-
+    console.log('this is working');
     cos.connect((err) => {
         if (err) {
             console.log(err);
@@ -25,11 +26,11 @@ const connect = () => {
             console.log("Connected");
 
             // create dropDateBase
-            // const dropDateBase = `DROP DATABASE MYDEMO;`
+            const dropDateBase = `DROP DATABASE MYDEMO;`
             // cos.query(dropDateBase, (err) => { if (err) throw err })
 
             // create database
-            // const dataBase = `CREATE DATABASE MYDEMO;`
+            const dataBase = `CREATE DATABASE MYDEMO;`
             // cos.query(dataBase, (err) => { if (err) throw err })
 
             // select database
@@ -38,10 +39,13 @@ const connect = () => {
 
             // drop table 
             const dropTable = `DROP TABLE USER`
-            cos.query(dropTable, (err) => { if (err) throw err })
+            // cos.query(dropTable, (err) => { if (err) throw err })
 
             // create table
-            cos.query(createTable, (err) => { if (err) throw err })
+            // cos.query(createTable, (err) => { if (err) throw err })
+
+            // alertable 
+            // cos.query(alterTable, (err) => { if (err) throw err })
         }
     })
 }

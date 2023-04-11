@@ -9,6 +9,8 @@ import Navbar from "./componets/Navbar";
 import Roles from "./componets/Roles/Roles"
 import Company from "./componets/Company/Company"
 import Designation from "./componets/Designation/Designation"
+import Loginlist from './componets/Crud operation/Loginlist'
+import Users from './componets/Users/Users'
 
 function App() {
   return (
@@ -18,6 +20,9 @@ function App() {
         <Route path="/roles" element={<Roles />} />
         <Route path="/company" element={<Company />} />
         <Route path="/designation" element={<Designation />} />
+        <Route path="/sql" element={<Loginlist />} />
+        <Route path="/users" element={<Users />} />
+     
       </Routes>
     </>
   );

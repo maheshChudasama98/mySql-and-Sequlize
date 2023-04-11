@@ -6,7 +6,10 @@ const Show = async (req, res) => {
     const Roles = db.Roles;
     const Company = db.Company
     const Designation = db.Designation
-    const jane = await Users.findAll();
+    const jane = await Users.findAll({
+        include :Roles,
+        
+    });
     res.json(jane)
 }
 
