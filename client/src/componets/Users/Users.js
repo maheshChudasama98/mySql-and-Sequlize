@@ -50,12 +50,7 @@ const Users = () => {
                 'Content-Type': 'application/json',
             }
         };
-
-        // fetch('http://localhost:8080/sequlize/Roles')
-        //     .then(response => response.json())
-            // .then(json => console.log(json))
-
-        axios.get('http://localhost:8080/sequlize/Roles',config).then((response) => {
+        axios.get('http://localhost:8080/sequlize/Show', config).then((response) => {
             setUserlist1(response.data)
             setMsg("SUccesss")
         }).catch((error) => {
@@ -64,11 +59,6 @@ const Users = () => {
     }
 
     const update = (edititem) => {
-
-        let data = {
-            first_name: "",
-        }
-        setDatapass(data)
 
         if (open == false) {
             setOpen(true)
@@ -87,7 +77,6 @@ const Users = () => {
         }
     }
 
-
     const Deleteitem = (item) => {
         let config = {
             headers: {
@@ -95,12 +84,8 @@ const Users = () => {
                 'token': localStorage.getItem('token')
             }
         };
-
-        axios.delete(`http://localhost:8080/sequlize/Roles/${item.Role_id}`, config).then((response) => {
+        axios.delete(`http://localhost:8080/sequlize/User/${item.User_id}`, config).then((response) => {
             getUseApi()
-            console.log("success");
-            console.log(response.message);
-            setMsg("SUccesss")
         }).catch((error) => { });
     }
 
@@ -117,7 +102,13 @@ const Users = () => {
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center">#</TableCell>
-                                <TableCell align="center">Roles Name</TableCell>
+                                <TableCell align="center">Full Name</TableCell>
+                                <TableCell align="center">User Name</TableCell>
+                                <TableCell align="center">Email</TableCell>
+                                <TableCell align="center">Password</TableCell>
+                                <TableCell align="center">Role</TableCell>
+                                <TableCell align="center">Designation</TableCell>
+                                <TableCell align="center">Company</TableCell>
                                 <TableCell align="center">Edit / Remove</TableCell>
                             </TableRow>
                         </TableHead>
@@ -130,7 +121,13 @@ const Users = () => {
                                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                     >
                                         <TableCell align="center">{i + 1}</TableCell>
-                                        <TableCell align="center">{item.Role_Name}</TableCell>
+                                        <TableCell align="center">{item.User_Name}</TableCell>
+                                        <TableCell align="center">{item.User_user_name}</TableCell>
+                                        <TableCell align="center">{item.User_email}</TableCell>
+                                        <TableCell align="center">{item.User_Password}</TableCell>
+                                        <TableCell align="center">{item.Role && item.Role.Role_Name}</TableCell>
+                                        <TableCell align="center">{item.Designation && item.Designation.Desi_Name}</TableCell>
+                                        <TableCell align="center">{item.Company && item.Company.Company_Name}</TableCell>
                                         <TableCell align="center">
 
                                             <button className=' btn  btn-outline-dark mx-2' onClick={() => updateModal(item)}>

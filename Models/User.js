@@ -21,17 +21,17 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(15),
         },
 
-        User_role_name_fk: {
+        RoleRoleId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             
         },
-        User_desi_name_fk: {
+        DesignationDesiId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             
         },
-        User_com_name_fk: {
+        CompanyCompanyId: {
             type: DataTypes.INTEGER,
             allowNull: false,
             

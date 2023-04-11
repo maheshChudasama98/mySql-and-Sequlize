@@ -91,22 +91,30 @@ function UserForm(props) {
             Password: "Demo@123",
             countryName: "",
             DesignationName: "",
-            RoleName:""
+            RoleName: ""
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
+            console.log("------------------------------------", values);
 
             props.handleClose()
 
             let data = {
                 Role_Name: values.RoleName,
-            }
-            console.log("submit",values);
-            // axios.post('http://localhost:8080/sequlize/Roles', data).then((response) => {
-            //     props.getUseApi()
-            // }).catch((error) => {
 
-            // })
+                User_Name: values.FullName,
+                User_user_name: values.UserName,
+                User_email: values.Email,
+                User_Password: values.Password,
+                RoleRoleId: values.RoleName,
+                DesignationDesiId: values.DesignationName,
+                CompanyCompanyId: values.countryName
+            }
+            axios.post('http://localhost:8080/sequlize/User', data).then((response) => {
+                props.getUseApi()
+            }).catch((error) => {
+
+            })
         },
     });
 

@@ -9,9 +9,7 @@ import UserUpdateModal from './UserUpdateModal'
 function UserUpdata(props) {
     const [open] = useState(true);
     const [pass, setPass] = useState(props.datapass)
-
     const handleClose = () => { props.modalcallbakModel(false) };
-
     const style = {
         position: 'absolute',
         top: '50%',

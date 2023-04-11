@@ -6,16 +6,28 @@ const Show = async (req, res) => {
     const Roles = db.Roles;
     const Company = db.Company
     const Designation = db.Designation
+
     const jane = await Users.findAll({
-        include :Roles,
-        
+        include: [
+            { model: Roles, attributes :["Role_id","Role_Name"]}, 
+            { model: Company , attributes :["Company_id","Company_Name"]},
+            {model:Designation , attributes :["Desi_id","Desi_Name"]}]
     });
+    console.log(jane,'jane')
     res.json(jane)
 }
 
-const getUser = async (req, res) => {
-    const Users = db.Users;
-    const jane = await Users.findAll();
+const getUser = async (req, res) => { const Users = db.Users;
+    const Roles = db.Roles;
+    const Company = db.Company
+    const Designation = db.Designation
+
+    const jane = await Users.findAll({
+        include: [
+            { model: Roles, attributes :["Role_id","Role_Name"]}, 
+            { model: Company , attributes :["Company_id","Company_Name"]},
+            {model:Designation , attributes :["Desi_id","Desi_Name"]}]
+    });
     res.json(jane)
 }
 
@@ -36,7 +48,7 @@ const putUser = async (req, res) => {
 }
 
 const deleteUser = async (req, res) => {
-    const UsergnUsersation = db.Users;
+    const Users = db.Users;
     const fineId = req.params.id
     const jane = await Users.destroy({ where: { User_id: fineId } });
     res.json(jane)
