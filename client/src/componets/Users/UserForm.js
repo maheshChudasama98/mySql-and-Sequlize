@@ -100,8 +100,6 @@ function UserForm(props) {
             props.handleClose()
 
             let data = {
-                Role_Name: values.RoleName,
-
                 User_Name: values.FullName,
                 User_user_name: values.UserName,
                 User_email: values.Email,

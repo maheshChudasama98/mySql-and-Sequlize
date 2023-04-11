@@ -18,7 +18,6 @@ var cos = mysql.createConnection({
 
 
 const connect = () => {
-    console.log('this is working');
     cos.connect((err) => {
         if (err) {
             console.log(err);

@@ -10,6 +10,7 @@ function UserUpdata(props) {
     const [open] = useState(true);
     const [pass, setPass] = useState(props.datapass)
     const handleClose = () => { props.modalcallbakModel(false) };
+    console.log(pass,'pass')
     const style = {
         position: 'absolute',
         top: '50%',

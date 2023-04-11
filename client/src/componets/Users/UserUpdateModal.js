@@ -62,6 +62,7 @@ function UserUpdateModal(props) {
     const [Roles, setRoles] = useState([])
     const RolesFun = () => {
         axios.get('http://localhost:8080/sequlize/Roles').then((response) => {
+            console.log(response.data)
             setRoles(response.data)
         }).catch((error) => {
             console.log(error);
@@ -92,9 +93,9 @@ function UserUpdateModal(props) {
             UserName: props.pass.User_user_name,
             Email: props.pass.User_email,
             Password: props.pass.User_Password,
-            countryName: "",
-            DesignationName: "",
-            RoleName: ""
+            countryName: props.pass.Company && props.pass.Company.Company_id,
+            DesignationName: props.pass.Designation && props.pass.Designation.Desi_id || '',
+            RoleName: props.pass.Role && props.pass.Role.Role_id || ''
         },
 
         validationSchema: validationSchema,
